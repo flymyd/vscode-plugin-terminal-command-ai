@@ -16,6 +16,18 @@
       {
         "command": "shell-ai-completion-helper.generateCommand",
         "title": "AI: Generate Terminal Command"
+      },
+      {
+        "command": "shell-ai-completion-helper.quickGenerate",
+        "title": "AI: Quick Generate from Terminal Comment"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "shell-ai-completion-helper.quickGenerate",
+        "key": "ctrl+shift+x",
+        "mac": "cmd+shift+x",
+        "when": "terminalFocus"
       }
     ],
     "configuration": {
@@ -36,6 +48,11 @@
           "default": "",
           "description": "Your API key for the LLM service. Stored securely.",
           "secret": true
+        },
+        "myTerminalAI.quickGenerateKeybinding": {
+          "type": "string",
+          "default": "ctrl+x",
+          "description": "Custom keybinding for quick AI command generation. Use format like 'ctrl+x', 'cmd+shift+g', etc."
         }
       }
     }
