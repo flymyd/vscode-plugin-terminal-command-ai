@@ -116,18 +116,18 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function callLLM(prompt: string): Promise<string | null> {
-	const config = vscode.workspace.getConfiguration('myTerminalAI');
+	const config = vscode.workspace.getConfiguration('TerminalCommandAI');
 	const apiKey = config.get<string>('apiKey');
 	const apiEndpoint = config.get<string>('apiEndpoint');
 	const modelName = config.get<string>('modelName');
 	const terminalPreference = config.get<string>('terminalPreference');
 	if (!apiKey) {
 		vscode.window.showErrorMessage(
-			'API Key not configured for My Terminal AI.',
+			'API Key not configured for Terminal Command AI.',
 			'Open Settings'
 		).then(selection => {
 			if (selection === 'Open Settings') {
-				vscode.commands.executeCommand('workbench.action.openSettings', 'myTerminalAI.apiKey');
+				vscode.commands.executeCommand('workbench.action.openSettings', 'TerminalCommandAI.apiKey');
 			}
 		});
 		return null;
