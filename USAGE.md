@@ -49,6 +49,7 @@
 - **Model Name**: 使用的模型名称（默认：gpt-4o-mini）
 - **API Key**: 你的API密钥
 - **Quick Generate Keybinding**: 自定义快捷键（默认：ctrl+x）
+- **Terminal Preference**: 选择偏好终端语言
 - 可选值：`ctrl+shift+x`, `ctrl+x`, `ctrl+shift+g`, `ctrl+alt+x`
 
 ## 使用技巧
