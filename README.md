@@ -1,71 +1,89 @@
-# TerminalCommandAI README
+# Terminal Command AI - 使用说明
 
-This is the README for your extension "TerminalCommandAI". After writing up a brief description, we recommend including the following sections.
+这个VSCode插件提供了AI驱动的终端命令生成功能，支持多种使用方式。
 
-## Features
+## 功能特性
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- 🚀 **快捷键触发**: 通过快捷键快速生成命令
+- 📝 **多种输入方式**: 支持选中文本、剪贴板、手动输入
+- 🖥️ **跨平台**: 支持Windows和macOS的不同快捷键
+- ⚙️ **可配置**: 支持自定义API端点和模型
 
-For example if there is an image subfolder under your extension project workspace:
+## 使用方法
 
-\!\[feature X\]\(images/feature-x.png\)
+### 快捷键 + 选中文本（推荐）
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+1. 在终端或任意文件中输入注释：
+   ```bash
+   # 压缩/root/test目录为tar文件
+   ```
 
-## Requirements
+2. 选中这行文本
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+3. 按快捷键：
+   - **Windows/Linux**: `Ctrl + Shift + X`
+   - **macOS**: `Cmd + Shift + X`
 
-## Extension Settings
+4. AI会在终端中生成对应的命令：
+   ```bash
+   tar -cvf /root/test.tar /root/test
+   ```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### 方法2: 快捷键 + 手动输入
 
-For example:
+1. 按快捷键（如果没有选中文本或剪贴板内容）
+2. 在弹出的输入框中输入命令描述
+3. AI生成对应的命令
 
-This extension contributes the following settings:
+### 方法3: 命令面板
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+1. 按 `Cmd + Shift + P` (macOS) 或 `Ctrl + Shift + P` (Windows/Linux)
+2. 输入 "TerminalCommandAI: Generate Terminal Command"
+3. 在输入框中描述要生成的命令
 
-## Known Issues
+## 配置说明
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+在VSCode设置中配置以下选项：
 
-## Release Notes
+- **API Endpoint**: LLM服务的API端点（默认：OpenAI）
+- **Model Name**: 使用的模型名称（默认：gpt-4o-mini）
+- **API Key**: 你的API密钥
+- **Quick Generate Keybinding**: 自定义快捷键（默认：ctrl+x）
+- **Terminal Preference**: 选择偏好终端语言
+- 可选值：`ctrl+shift+x`, `ctrl+x`, `ctrl+shift+g`, `ctrl+alt+x`
 
-Users appreciate release notes as you update your extension.
+## 使用技巧
 
-### 1.0.0
+1. **注释格式**: 以 `#` 开头的文本会被识别为命令描述
+2. **中文支持**: 完全支持中文描述，如 "# 压缩文件夹"
+3. **复杂命令**: 可以描述复杂的操作，AI会生成相应的命令组合
+4. **终端焦点**: 确保终端窗口处于活动状态时使用快捷键
 
-Initial release of ...
+## 示例
 
-### 1.0.1
+```bash
+# 查找当前目录下所有.js文件
+# 结果: find . -name "*.js" -type f
 
-Fixed issue #.
+# 创建一个新的git分支并切换
+# 结果: git checkout -b new-branch-name
 
-### 1.1.0
+# 压缩整个项目目录，排除node_modules
+# 结果: tar --exclude='node_modules' -czf project.tar.gz .
 
-Added features X, Y, and Z.
+# 查看端口8080的占用情况
+# 结果: lsof -i :8080
+```
 
----
+## 故障排除
 
-## Following extension guidelines
+1. **快捷键不工作**: 确保终端窗口处于焦点状态
+2. **API错误**: 检查API密钥和端点配置
+3. **没有生成命令**: 确保输入的描述清晰明确
+4. **权限问题**: 某些命令可能需要sudo权限
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+## 注意事项
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- 生成的命令仅供参考，执行前请仔细检查
+- 涉及系统关键操作的命令请谨慎使用
+- API调用可能产生费用，请注意使用频率
