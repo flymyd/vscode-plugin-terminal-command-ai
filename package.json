@@ -1,16 +1,26 @@
 {
   "name": "terminal-command-ai",
-  "displayName": "TerminalCommandAI",
+  "displayName": "Terminal Command AI",
   "description": "Provide AI-powered capabilities for the VS Code shell.",
   "version": "1.0.0",
   "engines": {
     "vscode": "^1.102.0"
   },
-  "categories": [
-    "Other"
-  ],
   "activationEvents": [],
   "main": "./dist/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flymyd/vscode-plugin-terminal-command-ai.git"
+  },
+  "publisher": "flymyd",
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Other"
+  ],
+  "bugs": {
+    "url": "https://github.com/flymyd/vscode-plugin-terminal-command-ai/issues"
+  },
   "contributes": {
     "commands": [
       {
@@ -92,7 +102,7 @@
             "powershell",
             "cmd"
           ],
-           "enumDescriptions": [
+          "enumDescriptions": [
             "bash (Unix-like, e.g. macOS / Linux)",
             "powershell (Windows)",
             "cmd (previous Windows)"

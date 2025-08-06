@@ -1,89 +1,91 @@
-# Terminal Command AI - 使用说明
+# Terminal Command AI
 
-这个VSCode插件提供了AI驱动的终端命令生成功能，支持多种使用方式。
+[![Version](https://img.shields.io/visual-studio-marketplace/v/your-publisher.your-extension-name.svg)](https://marketplace.visualstudio.com/items?itemName=your-publisher.your-extension-name)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/your-publisher.your-extension-name.svg)](https://marketplace.visualstudio.com/items?itemName=your-publisher.your-extension-name)
 
-## 功能特性
+[简体中文](./README_zh-CN.md) | English
 
-- 🚀 **快捷键触发**: 通过快捷键快速生成命令
-- 📝 **多种输入方式**: 支持选中文本、剪贴板、手动输入
-- 🖥️ **跨平台**: 支持Windows和macOS的不同快捷键
-- ⚙️ **可配置**: 支持自定义API端点和模型
+This VSCode extension provides AI-powered terminal command generation with multiple ways to use it.
 
-## 使用方法
+## Features
 
-### 快捷键 + 选中文本（推荐）
+- 🚀 **Hotkey Trigger**: Quickly generate commands with a keyboard shortcut.
+- 📝 **Multiple Input Methods**: Supports selected text, clipboard content, and manual input.
+- 🖥️ **Cross-Platform**: Supports different hotkeys for Windows, Linux, and macOS.
+- ⚙️ **Configurable**: Customize the API endpoint, model, and other settings.
 
-1. 在终端或任意文件中输入注释：
-   ```bash
-   # 压缩/root/test目录为tar文件
-   ```
+## How to Use
 
-2. 选中这行文本
+### Method 1: Hotkey + Selected Text (Recommended)
 
-3. 按快捷键：
-   - **Windows/Linux**: `Ctrl + Shift + X`
-   - **macOS**: `Cmd + Shift + X`
+1.  Type a comment in the terminal or any file:
+    ```bash
+    # Compress the /root/test directory into a tar file
+    ```
+2.  Select this line of text.
+3.  Press the hotkey:
+    -   **Windows/Linux**: `Ctrl + Shift + X`
+    -   **macOS**: `Cmd + Shift + X`
+4.  The AI will generate the corresponding command in the terminal:
+    ```bash
+    tar -cvf /root/test.tar /root/test
+    ```
 
-4. AI会在终端中生成对应的命令：
-   ```bash
-   tar -cvf /root/test.tar /root/test
-   ```
+### Method 2: Hotkey + Manual Input
 
-### 方法2: 快捷键 + 手动输入
+1.  Press the hotkey without any selected text or clipboard content.
+2.  Enter a description of the command in the input box that appears.
+3.  The AI will generate the corresponding command.
 
-1. 按快捷键（如果没有选中文本或剪贴板内容）
-2. 在弹出的输入框中输入命令描述
-3. AI生成对应的命令
+### Method 3: Command Palette
 
-### 方法3: 命令面板
+1.  Press `Cmd + Shift + P` (macOS) or `Ctrl + Shift + P` (Windows/Linux).
+2.  Type "TerminalCommandAI: Generate Terminal Command".
+3.  Describe the command you want to generate in the input box.
 
-1. 按 `Cmd + Shift + P` (macOS) 或 `Ctrl + Shift + P` (Windows/Linux)
-2. 输入 "TerminalCommandAI: Generate Terminal Command"
-3. 在输入框中描述要生成的命令
+## Configuration
 
-## 配置说明
+Configure the following options in your VSCode settings:
 
-在VSCode设置中配置以下选项：
+-   **`terminalCommandAI.apiEndpoint`**: The API endpoint for the LLM service (Default: OpenAI).
+-   **`terminalCommandAI.modelName`**: The name of the model to use (Default: `gpt-4o-mini`).
+-   **`terminalCommandAI.apiKey`**: Your API key.
+-   **`terminalCommandAI.quickGenerateKeybinding`**: Customize the quick generation hotkey (Default: `ctrl+x`).
+    -   Available options: `ctrl+shift+x`, `ctrl+x`, `ctrl+shift+g`, `ctrl+alt+x`.
+-   **`terminalCommandAI.terminalPreference`**: Choose your preferred terminal language/shell.
 
-- **API Endpoint**: LLM服务的API端点（默认：OpenAI）
-- **Model Name**: 使用的模型名称（默认：gpt-4o-mini）
-- **API Key**: 你的API密钥
-- **Quick Generate Keybinding**: 自定义快捷键（默认：ctrl+x）
-- **Terminal Preference**: 选择偏好终端语言
-- 可选值：`ctrl+shift+x`, `ctrl+x`, `ctrl+shift+g`, `ctrl+alt+x`
+## Pro Tips
 
-## 使用技巧
+1.  **Comment Format**: Text starting with `#` is recognized as a command description.
+2.  **Multi-language Support**: Works well with descriptions in any language, e.g., "# 压缩文件夹".
+3.  **Complex Commands**: Describe complex operations, and the AI will generate the corresponding command pipelines.
+4.  **Terminal Focus**: Ensure the terminal window is active when using the hotkey.
 
-1. **注释格式**: 以 `#` 开头的文本会被识别为命令描述
-2. **中文支持**: 完全支持中文描述，如 "# 压缩文件夹"
-3. **复杂命令**: 可以描述复杂的操作，AI会生成相应的命令组合
-4. **终端焦点**: 确保终端窗口处于活动状态时使用快捷键
-
-## 示例
+## Examples
 
 ```bash
-# 查找当前目录下所有.js文件
-# 结果: find . -name "*.js" -type f
+# Find all .js files in the current directory
+# Result: find . -name "*.js" -type f
 
-# 创建一个新的git分支并切换
-# 结果: git checkout -b new-branch-name
+# Create a new git branch and switch to it
+# Result: git checkout -b new-branch-name
 
-# 压缩整个项目目录，排除node_modules
-# 结果: tar --exclude='node_modules' -czf project.tar.gz .
+# Compress the entire project directory, excluding node_modules
+# Result: tar --exclude='node_modules' -czf project.tar.gz .
 
-# 查看端口8080的占用情况
-# 结果: lsof -i :8080
+# Check which process is using port 8080
+# Result: lsof -i :8080
 ```
 
-## 故障排除
+## Troubleshooting
 
-1. **快捷键不工作**: 确保终端窗口处于焦点状态
-2. **API错误**: 检查API密钥和端点配置
-3. **没有生成命令**: 确保输入的描述清晰明确
-4. **权限问题**: 某些命令可能需要sudo权限
+1.  **Hotkey Not Working**: Make sure the terminal window is in focus.
+2.  **API Error**: Check your API key and endpoint configuration in the settings.
+3.  **No Command Generated**: Ensure your description is clear and specific.
+4.  **Permission Issues**: Some commands may require `sudo` privileges to run.
 
-## 注意事项
+## Disclaimer
 
-- 生成的命令仅供参考，执行前请仔细检查
-- 涉及系统关键操作的命令请谨慎使用
-- API调用可能产生费用，请注意使用频率
+-   The generated commands are for reference only. Please review them carefully before execution.
+-   Use commands that modify system-critical files with extreme caution.
+-   API calls may incur costs from your provider. Please monitor your usage.
