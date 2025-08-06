@@ -1,8 +1,8 @@
 {
-  "name": "shell-ai-completion-helper",
-  "displayName": "shell-ai-completion-helper",
+  "name": "terminal-command-ai",
+  "displayName": "TerminalCommandAI",
   "description": "Provide AI-powered capabilities for the VS Code shell.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.102.0"
   },
@@ -14,60 +14,60 @@
   "contributes": {
     "commands": [
       {
-        "command": "shell-ai-completion-helper.generateCommand",
-        "title": "AI: Generate Terminal Command"
+        "command": "Terminal Command AI.generateCommand",
+        "title": "Terminal Command AI: Generate Terminal Command"
       },
       {
-        "command": "shell-ai-completion-helper.quickGenerate",
-        "title": "AI: Quick Generate from Terminal Comment"
+        "command": "Terminal Command AI.quickGenerate",
+        "title": "Terminal Command AI: Quick Generate from Terminal Comment"
       }
     ],
     "keybindings": [
       {
-        "command": "shell-ai-completion-helper.quickGenerate",
+        "command": "TerminalCommandAI.quickGenerate",
         "key": "ctrl+x",
         "mac": "cmd+x",
-        "when": "terminalFocus && config.myTerminalAI.quickGenerateKeybinding == 'ctrl+x'"
+        "when": "terminalFocus && config.TerminalCommandAI.quickGenerateKeybinding == 'ctrl+x'"
       },
       {
-        "command": "shell-ai-completion-helper.quickGenerate",
+        "command": "TerminalCommandAI.quickGenerate",
         "key": "ctrl+shift+x",
         "mac": "cmd+shift+x",
-        "when": "terminalFocus && config.myTerminalAI.quickGenerateKeybinding == 'ctrl+shift+x'"
+        "when": "terminalFocus && config.TerminalCommandAI.quickGenerateKeybinding == 'ctrl+shift+x'"
       },
       {
-        "command": "shell-ai-completion-helper.quickGenerate",
+        "command": "TerminalCommandAI.quickGenerate",
         "key": "ctrl+shift+g",
         "mac": "cmd+shift+g",
-        "when": "terminalFocus && config.myTerminalAI.quickGenerateKeybinding == 'ctrl+shift+g'"
+        "when": "terminalFocus && config.TerminalCommandAI.quickGenerateKeybinding == 'ctrl+shift+g'"
       },
       {
-        "command": "shell-ai-completion-helper.quickGenerate",
+        "command": "TerminalCommandAI.quickGenerate",
         "key": "ctrl+alt+x",
         "mac": "cmd+alt+x",
-        "when": "terminalFocus && config.myTerminalAI.quickGenerateKeybinding == 'ctrl+alt+x'"
+        "when": "terminalFocus && config.TerminalCommandAI.quickGenerateKeybinding == 'ctrl+alt+x'"
       }
     ],
     "configuration": {
-      "title": "My Terminal AI",
+      "title": "Terminal Command AI",
       "properties": {
-        "myTerminalAI.apiEndpoint": {
+        "TerminalCommandAI.apiEndpoint": {
           "type": "string",
           "default": "https://api.openai.com/v1/chat/completions",
           "description": "The API endpoint URL for the Large Language Model."
         },
-        "myTerminalAI.modelName": {
+        "TerminalCommandAI.modelName": {
           "type": "string",
           "default": "gpt-4o-mini",
           "description": "The name of the model to use (e.g., gpt-4o-mini, gpt-3.5-turbo)."
         },
-        "myTerminalAI.apiKey": {
+        "TerminalCommandAI.apiKey": {
           "type": "string",
           "default": "",
           "description": "Your API key for the LLM service. Stored securely.",
           "secret": true
         },
-        "myTerminalAI.quickGenerateKeybinding": {
+        "TerminalCommandAI.quickGenerateKeybinding": {
           "type": "string",
           "default": "ctrl+x",
           "enum": [
@@ -83,6 +83,21 @@
             "Ctrl+Alt+X (Cmd+Alt+X on Mac)"
           ],
           "description": "Custom keybinding for quick AI command generation. Select from predefined options."
+        },
+        "TerminalCommandAI.terminalPreference": {
+          "type": "string",
+          "default": "bash",
+          "enum": [
+            "bash",
+            "powershell",
+            "cmd"
+          ],
+           "enumDescriptions": [
+            "bash (Unix-like, e.g. macOS / Linux)",
+            "powershell (Windows)",
+            "cmd (previous Windows)"
+          ],
+          "description": "The preferred terminal shell for generating commands."
         }
       }
     }

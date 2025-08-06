@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import fetch from 'node-fetch';
 
 export function activate(context: vscode.ExtensionContext) {
-	let disposable = vscode.commands.registerCommand('shell-ai-completion-helper.generateCommand', async () => {
+	let disposable = vscode.commands.registerCommand('TerminalCommandAI.generateCommand', async () => {
 		const activeTerminal = vscode.window.activeTerminal;
 		if (!activeTerminal) {
 			vscode.window.showErrorMessage('No active terminal found.');
@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 	});
 
-	let quickGenerateDisposable = vscode.commands.registerCommand('shell-ai-completion-helper.quickGenerate', async () => {
+	let quickGenerateDisposable = vscode.commands.registerCommand('TerminalCommandAI.quickGenerate', async () => {
 		const activeTerminal = vscode.window.activeTerminal;
 		if (!activeTerminal) {
 			vscode.window.showErrorMessage('No active terminal found.');
@@ -55,8 +55,8 @@ export function activate(context: vscode.ExtensionContext) {
 			userPrompt = userPrompt.substring(1).trim();
 		}
 		const finalPrompt = await vscode.window.showInputBox({
-			placeHolder: "e.g., 压缩/root/test目录为tar",
-			prompt: "请确认或输入要生成的命令描述",
+			placeHolder: "e.g., find all files larger than 10MB in the current directory",
+			prompt: "Describe the command you want to generate",
 			value: userPrompt,
 			ignoreFocusOut: true,
 		});
@@ -74,7 +74,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		});
 	});
-	let alternativeQuickGenerate = vscode.commands.registerCommand('shell-ai-completion-helper.quickGenerateAlternative', async () => {
+	let alternativeQuickGenerate = vscode.commands.registerCommand('TerminalCommandAI.quickGenerateAlternative', async () => {
 		const activeTerminal = vscode.window.activeTerminal;
 		if (!activeTerminal) {
 			vscode.window.showErrorMessage('No active terminal found.');
@@ -120,6 +120,7 @@ async function callLLM(prompt: string): Promise<string | null> {
 	const apiKey = config.get<string>('apiKey');
 	const apiEndpoint = config.get<string>('apiEndpoint');
 	const modelName = config.get<string>('modelName');
+	const terminalPreference = config.get<string>('terminalPreference');
 	if (!apiKey) {
 		vscode.window.showErrorMessage(
 			'API Key not configured for My Terminal AI.',
@@ -131,7 +132,7 @@ async function callLLM(prompt: string): Promise<string | null> {
 		});
 		return null;
 	}
-	const systemPrompt = `You are a bash shell expert, please help me complete the following command, you should only output the completed command, no need to include any other explanation. Do not put completed command in a code block.`;
+	const systemPrompt = `You are a ${terminalPreference} shell expert, please help me complete the following command, you should only output the completed command, no need to include any other explanation. Do not put completed command in a code block.`;
 	try {
 		const response = await fetch(apiEndpoint!, {
 			method: 'POST',

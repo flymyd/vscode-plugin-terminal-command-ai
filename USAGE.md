@@ -38,7 +38,7 @@
 ### 方法3: 命令面板
 
 1. 按 `Cmd + Shift + P` (macOS) 或 `Ctrl + Shift + P` (Windows/Linux)
-2. 输入 "AI: Generate Terminal Command"
+2. 输入 "TerminalCommandAI: Generate Terminal Command"
 3. 在输入框中描述要生成的命令
 
 ## 配置说明
