@@ -14,11 +14,11 @@
   "contributes": {
     "commands": [
       {
-        "command": "Terminal Command AI.generateCommand",
+        "command": "TerminalCommandAI.generateCommand",
         "title": "Terminal Command AI: Generate Terminal Command"
       },
       {
-        "command": "Terminal Command AI.quickGenerate",
+        "command": "TerminalCommandAI.quickGenerate",
         "title": "Terminal Command AI: Quick Generate from Terminal Comment"
       }
     ],
