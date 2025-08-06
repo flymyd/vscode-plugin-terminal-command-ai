@@ -25,9 +25,27 @@
     "keybindings": [
       {
         "command": "shell-ai-completion-helper.quickGenerate",
+        "key": "ctrl+x",
+        "mac": "cmd+x",
+        "when": "terminalFocus && config.myTerminalAI.quickGenerateKeybinding == 'ctrl+x'"
+      },
+      {
+        "command": "shell-ai-completion-helper.quickGenerate",
         "key": "ctrl+shift+x",
         "mac": "cmd+shift+x",
-        "when": "terminalFocus"
+        "when": "terminalFocus && config.myTerminalAI.quickGenerateKeybinding == 'ctrl+shift+x'"
+      },
+      {
+        "command": "shell-ai-completion-helper.quickGenerate",
+        "key": "ctrl+shift+g",
+        "mac": "cmd+shift+g",
+        "when": "terminalFocus && config.myTerminalAI.quickGenerateKeybinding == 'ctrl+shift+g'"
+      },
+      {
+        "command": "shell-ai-completion-helper.quickGenerate",
+        "key": "ctrl+alt+x",
+        "mac": "cmd+alt+x",
+        "when": "terminalFocus && config.myTerminalAI.quickGenerateKeybinding == 'ctrl+alt+x'"
       }
     ],
     "configuration": {
@@ -52,7 +70,19 @@
         "myTerminalAI.quickGenerateKeybinding": {
           "type": "string",
           "default": "ctrl+x",
-          "description": "Custom keybinding for quick AI command generation. Use format like 'ctrl+x', 'cmd+shift+g', etc."
+          "enum": [
+            "ctrl+x",
+            "ctrl+shift+x",
+            "ctrl+shift+g",
+            "ctrl+alt+x"
+          ],
+          "enumDescriptions": [
+            "Ctrl+X (Cmd+X on Mac)",
+            "Ctrl+Shift+X (Cmd+Shift+X on Mac)",
+            "Ctrl+Shift+G (Cmd+Shift+G on Mac)",
+            "Ctrl+Alt+X (Cmd+Alt+X on Mac)"
+          ],
+          "description": "Custom keybinding for quick AI command generation. Select from predefined options."
         }
       }
     }
